@@ -9,14 +9,14 @@ const links = [
 
 const Navbar = () => {
   return (
-    <div className=" h-[100px] bg-green-100 flex justify-between items-center px-20 ">
+    <div className=" h-[100px] bg-pink-300 flex justify-between items-center px-20 ">
       <div>
         <Link to="/">
           <p className="text-2xl">LOGO</p>
         </Link>
       </div>
       <div className=" ">
-        <ul className="flex space-x-3 text-xl   ">
+        <ul className="flex space-x-3 text-3xl font-tru text-neutral-600    ">
           {links.map((link, i) => (
             <li key={i}>
               <Link to={link.path}>{link.name}</Link>

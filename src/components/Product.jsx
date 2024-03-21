@@ -1,14 +1,8 @@
-import React from "react";
-
+import ProductCard from "./ProductCard";
 const Product = ({ product }) => {
   return (
-    <div>
-      <div>
-        <div className="flex space-x-2">
-          <p>{product.name}</p>
-          <p>{product.price}</p>
-        </div>
-      </div>
+    <div className="m-4 ">
+      <ProductCard product={product} />
     </div>
   );
 };
