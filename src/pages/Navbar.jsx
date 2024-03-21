@@ -9,7 +9,7 @@ const links = [
 
 const Navbar = () => {
   return (
-    <div className="h-[100px] bg-green-100 flex justify-between items-center px-20 ">
+    <div className=" h-[100px] bg-green-100 flex justify-between items-center px-20 ">
       <div>
         <Link to="/">
           <p className="text-2xl">LOGO</p>

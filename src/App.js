@@ -6,12 +6,14 @@ import Products from "./pages/Products";
 
 function App() {
   return (
-    <div className="App min-h-screen">
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/products" element={<Products />} />
-      </Routes>
+    <div>
+      <div className="App  ">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/products" element={<Products />} />
+        </Routes>
+      </div>
     </div>
   );
 }
