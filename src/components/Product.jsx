@@ -1,8 +1,9 @@
-import ProductCard from "./ProductCard";
-const Product = ({ product }) => {
+import Card from "./Card";
+
+const Product = ({ item }) => {
   return (
     <div className="m-4 ">
-      <ProductCard product={product} />
+      <Card item={item} />
     </div>
   );
 };
