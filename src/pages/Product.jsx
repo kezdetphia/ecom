@@ -49,7 +49,7 @@ const Product = () => {
         <div className="mainImg flex-1 ">
           <img
             src={images[currentImage]}
-            className="object-cover w-full h-[600px]   max-h-[800px]"
+            className="object-cover w-full h-[600px] max-h-[800px]"
             alt="product images"
           />
         </div>

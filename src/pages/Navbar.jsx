@@ -4,6 +4,7 @@ import { IoIosSearch } from "react-icons/io";
 import { MdOutlinePersonOutline } from "react-icons/md";
 import { IoIosHeartEmpty } from "react-icons/io";
 import { LuShoppingCart } from "react-icons/lu";
+import Cart from "../components/Cart";
 
 const links = [
   { name: "Home", path: "/" },
@@ -23,7 +24,7 @@ const Navbar = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   return (
-    <div className=" h-[100px] bg-neutral-100 flex justify-around items-center  ">
+    <div className=" h-[100px] bg-yellow-400 flex justify-around items-center  ">
       <div className="flex space-x-2 ">
         {categoryLinks.map((category, i) => (
           <div>
@@ -62,8 +63,8 @@ const Navbar = () => {
           </div>
         </div>
         {isCartOpen && (
-          <div className="absolute top-20 right-10 bg-white shadow-lg p-5">
-            <p>Cart is empty</p>
+          <div className="absolute top-24   right-0 bg-white shadow-lg p-5">
+            <Cart />
           </div>
         )}
       </div>
