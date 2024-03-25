@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
 import List from "../components/List";
-import Product from "../components/Product";
 import { useState } from "react";
 
 const Products = () => {
@@ -11,7 +10,7 @@ const Products = () => {
 
   return (
     <div className="px-12 flex justify-between mt-12   ">
-      <div className="left flex flex-col gap-y-4 pr-48 sticky top-8 h-full ">
+      <div className="left w-1/4 flex flex-col gap-y-4 pr-48 sticky top-8 h-full ">
         <div className="">
           <h2>Product Categories</h2>
           <div className="flex gap-x-1">
@@ -73,7 +72,7 @@ const Products = () => {
           alt="fashionimg"
           src="https://images.pexels.com/photos/322207/pexels-photo-322207.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
         />
-        <List  catId={catId} maxPrice={maxPrice} sort={sort} />
+        <List catId={catId} maxPrice={maxPrice} sort={sort} />
       </div>
     </div>
   );

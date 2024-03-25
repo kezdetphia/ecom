@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "./Card";
 
-const List = () => {
+const List = ({catId}) => {
   const data = [
     {
       id: 1,

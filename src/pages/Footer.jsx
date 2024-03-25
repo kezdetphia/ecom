@@ -4,7 +4,7 @@ const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <div className="footer mx-20 my-20 ">
+    <div className="footer mx-20 mt-20 ">
       <div className="top flex gap-x-10">
         <div className="item flex flex-col">
           <h1 className="text-lg font-semibold">Categories</h1>
@@ -46,7 +46,7 @@ const Footer = () => {
           <span className="logo text-blue-500 font-bold text-2xl">
             EcomStore
           </span>
-          <span className="copyright ml-4 text-gray-500 text-sm">
+          <span className=" ml-4 text-gray-500 text-sm">
             © Copyright {year}. All Rights Reserved
           </span>
         </div>

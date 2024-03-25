@@ -1,9 +1,8 @@
-import { useState } from "react";
-import { LuArrowLeftCircle } from "react-icons/lu";
-import { LuArrowRightCircle } from "react-icons/lu";
+// import { LuArrowLeftCircle } from "react-icons/lu";
+// import { LuArrowRightCircle } from "react-icons/lu";
 
 const Slider = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
+  // const [currentSlide, setCurrentSlide] = useState(0);
 
   const images = [
     "https://images.pexels.com/photos/1536619/pexels-photo-1536619.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
@@ -11,19 +10,20 @@ const Slider = () => {
     "https://images.pexels.com/photos/1126993/pexels-photo-1126993.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
   ];
 
-  const prevSlide = () => {
-    setCurrentSlide(currentSlide === 0 ? images.length - 1 : currentSlide - 1);
-  };
+  // const prevSlide = () => {
+  //   setCurrentSlide(currentSlide === 0 ? images.length - 1 : currentSlide - 1);
+  // };
 
-  const nextSlide = () => {
-    setCurrentSlide(currentSlide === 2 ? 0 : (prev) => prev + 1);
-  };
+  // const nextSlide = () => {
+  //   setCurrentSlide(currentSlide === 2 ? 0 : (prev) => prev + 1);
+  // };
 
   return (
     <div
       className="min-h-screen bg"
       style={{
-        backgroundImage: `url(${images[currentSlide]})`,
+        // backgroundImage: `url(${images[currentSlide]})`,
+        backgroundImage: `url(${images[0]})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { IoIosSearch } from "react-icons/io";
 import { MdOutlinePersonOutline } from "react-icons/md";
@@ -20,6 +20,8 @@ const categoryLinks = [
 ];
 
 const Navbar = () => {
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
   return (
     <div className=" h-[100px] bg-neutral-100 flex justify-around items-center  ">
       <div className="flex space-x-2 ">
@@ -49,13 +51,21 @@ const Navbar = () => {
           <MdOutlinePersonOutline className="text-2xl" />
           <IoIosHeartEmpty className="text-2xl" />
 
-          <div className="flex relative ">
-            <LuShoppingCart className="text-2xl" />
+          <div
+            onClick={() => setIsCartOpen(!isCartOpen)}
+            className="flex relative cursor-pointer "
+          >
+            <LuShoppingCart className="text-2xl " />
             <span className="absolute left-4 bottom-1 text-red-500 bg-blue-600 px-1 rounded-full ">
               0
             </span>
           </div>
         </div>
+        {isCartOpen && (
+          <div className="absolute top-20 right-10 bg-white shadow-lg p-5">
+            <p>Cart is empty</p>
+          </div>
+        )}
       </div>
     </div>
   );
