@@ -1,48 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Card from "./Card";
-
-
+import axios from "axios";
 
 const FeaturedProducts = ({ type }) => {
+  const [data, setData] = useState([]);
+  console.log(type);
 
-  const data = [
-    {
-      id: 1,
-      img: "https://m.media-amazon.com/images/I/71sek3cbamL._AC_SX625_.jpg",
-      img2: "https://m.media-amazon.com/images/I/71ovsF1JieL._AC_SX625_.jpg",
-      title: "Nike Air Max",
-      isNew: true,
-      oldPrice: "$149.99",
-      price: "$89.99",
-    },
-    {
-      id: 2,
-      img: "https://m.media-amazon.com/images/I/71sek3cbamL._AC_SX625_.jpg",
-      img2: "https://m.media-amazon.com/images/I/71ovsF1JieL._AC_SX625_.jpg",
-      title: "Adidas Superstar",
-      isNew: false,
-      oldPrice: "$99.99",
-      price: "$79.99",
-    },
-    {
-      id: 3,
-      img: "https://m.media-amazon.com/images/I/71sek3cbamL._AC_SX625_.jpg",
-      img2: "https://m.media-amazon.com/images/I/71ovsF1JieL._AC_SX625_.jpg",
-      title: "Converse Chuck Taylor All Star",
-      isNew: true,
-      oldPrice: "$59.99",
-      price: "$49.99",
-    },
-    {
-      id: 4,
-      img: "https://m.media-amazon.com/images/I/71sek3cbamL._AC_SX625_.jpg",
-      img2: "https://m.media-amazon.com/images/I/71ovsF1JieL._AC_SX625_.jpg",
-      title: "Puma Suede Classic",
-      isNew: false,
-      oldPrice: "$79.99",
-      price: "$69.99",
-    },
-  ];
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(
+          process.env.REACT_APP_API_URL +
+            `/products?populate=*&[filters][type][$eq]=${type}`,
+          {
+            headers: {
+              Authorization: "Bearer " + process.env.REACT_APP_API_TOKEN,
+            },
+          }
+        );
+        setData(res.data.data);
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  // console.log(data[0]?.attributes.img.data.attributes.url);
 
   return (
     <div className="mx-20 my-20">

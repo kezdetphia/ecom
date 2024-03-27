@@ -27,8 +27,8 @@ const Navbar = () => {
     <div className=" h-[100px] bg-yellow-400 flex justify-around items-center  ">
       <div className="flex space-x-2 ">
         {categoryLinks.map((category, i) => (
-          <div>
-            <ul key={i}>
+          <div key={i}>
+            <ul>
               <Link to={category.path}>
                 <p className="text-xl">{category.name}</p>
               </Link>
