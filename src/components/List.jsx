@@ -3,11 +3,15 @@ import Card from "./Card";
 import useFetch from "../hooks/useFetch";
 
 const List = ({ catId, maxPrice, sort, subCats }) => {
-  const { data, loading, error } = useFetch(
-    `/products?populate=*&[filters][categories][id]=${catId}${subCats.map(
-      (item) => `&[filters][sub_categories][id][$eq]=${item}`
-    )}&[filters][price][$lte]=${maxPrice}&sort=price:${sort}`
-  );
+  const queryParams = `/products?populate=*&[filters][categories][id]=${encodeURIComponent(
+    catId
+  )}${subCats.map(
+    (item) => `&[filters][sub_categories][id][$eq]=${encodeURIComponent(item)}`
+  )}&[filters][price][$lte]=${encodeURIComponent(
+    maxPrice
+  )}&sort=price:${encodeURIComponent(sort)}`;
+
+  const { data, loading, error } = useFetch(queryParams);
   return (
     <div className="flex flex-wrap justify-between">
       {loading
