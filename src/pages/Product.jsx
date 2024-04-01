@@ -2,15 +2,16 @@ import React, { useState } from "react";
 import { FaCartArrowDown } from "react-icons/fa";
 import { Link, useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../redux/cartReducer";
 
 const Product = () => {
   const id = useParams().id;
   const [selectedImage, setSelectedImg] = useState("img");
-
   const [quantity, setQuantity] = useState(0);
-
   const [increaseButtonClick, setIncreaseButtonClicked] = useState(false);
   const [decreaseButtonClick, setDecreaseButtonClicked] = useState(false);
+  const dispatch = useDispatch();
 
   const { data, loading, error } = useFetch(`/products/${id}?populate=*`);
 
@@ -99,7 +100,23 @@ const Product = () => {
           </button>
         </div>
         <div className="mt-5 ">
-          <button className="flex items-center justify-center bg-blue-600 px-7 py-2 gap-x-2 hover:bg-blue-700 text-neutral-300">
+          <button
+            onClick={() =>
+              dispatch(
+                addToCart({
+                  id: data.id,
+                  title: data.attributes.title,
+                  price: data.attributes.price,
+                  desc: data.attributes.desc,
+                  img:
+                    process.env.REACT_APP_UPLOAD_URL +
+                    data?.attributes?.img?.data?.attributes?.url,
+                  quantity,
+                })
+              )
+            }
+            className="flex items-center justify-center bg-blue-600 px-7 py-2 gap-x-2 hover:bg-blue-700 text-neutral-300"
+          >
             <FaCartArrowDown /> ADD TO CART
           </button>
         </div>
