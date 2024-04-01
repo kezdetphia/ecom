@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaCartArrowDown } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import useFetch from "../hooks/useFetch";
 
 const images = [
   "https://m.media-amazon.com/images/I/71sek3cbamL._AC_SX625_.jpg",
@@ -8,10 +9,15 @@ const images = [
 ];
 
 const Product = () => {
-  const [currentImage, setCurrentImage] = useState(0);
+  const id = useParams().id;
+  const [selectedImage, setSelectedImg] = useState("img");
+
   const [quantity, setQuantity] = useState(0);
+
   const [increaseButtonClick, setIncreaseButtonClicked] = useState(false);
   const [decreaseButtonClick, setDecreaseButtonClicked] = useState(false);
+
+  const { data, loading, error } = useFetch(`/products/${id}?populate=*`);
 
   const handleDecrease = () => {
     setQuantity((prev) => prev - 1);
@@ -33,22 +39,31 @@ const Product = () => {
       <div className="left flex-row sm:flex w-full md:w-1/2 gap-x-6">
         <div className="images flex flex-col gap-4">
           <img
-            onClick={() => setCurrentImage(0)}
-            src={images[0]}
+            onClick={() => setSelectedImg("img")}
+            src={
+              process.env.REACT_APP_UPLOAD_URL +
+              data?.attributes?.img.data.attributes.url
+            }
             alt="img1"
             className="cursor-pointer w-full h-24 object-cover"
           />
 
           <img
-            onClick={() => setCurrentImage(1)}
-            src={images[1]}
+            onClick={() => setSelectedImg("img2")}
+            src={
+              process.env.REACT_APP_UPLOAD_URL +
+              data?.attributes?.img.data.attributes.url
+            }
             alt="img2"
             className="cursor-pointer w-full h-24 object-cover"
           />
         </div>
         <div className="mainImg flex-1 ">
           <img
-            src={images[currentImage]}
+            src={
+              process.env.REACT_APP_UPLOAD_URL +
+              data?.attributes[selectedImage]?.data?.attributes?.url
+            }
             className="object-cover w-full h-[600px] max-h-[800px]"
             alt="product images"
           />

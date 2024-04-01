@@ -1,22 +1,17 @@
-import { useEffect } from "react";
-import { makeRequest } from "../utils/makeRequest";
+import { useEffect, useState } from "react";
+import makeRequest from "../utils/makeRequest";
 
-const useFetch = async (url) => {
-  const [data, setData] = useState();
+const useFetch = (url) => {
+  const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState();
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const res = await makeRequest.get(url, {
-          headers: {
-            Authorization: "Bearer " + process.env.REACT_APP_API_TOKEN,
-          },
-        });
+        const res = await makeRequest.get(url);
         setData(res.data.data);
-        console.log(data);
       } catch (error) {
         setError(true);
       }

@@ -1,51 +1,18 @@
 import React from "react";
 import Card from "./Card";
+import useFetch from "../hooks/useFetch";
 
-const List = ({catId}) => {
-  const data = [
-    {
-      id: 1,
-      img: "https://m.media-amazon.com/images/I/71sek3cbamL._AC_SX625_.jpg",
-      img2: "https://m.media-amazon.com/images/I/71ovsF1JieL._AC_SX625_.jpg",
-      title: "Nike Air Max",
-      isNew: true,
-      oldPrice: "$149.99",
-      price: "$89.99",
-    },
-    {
-      id: 2,
-      img: "https://m.media-amazon.com/images/I/71sek3cbamL._AC_SX625_.jpg",
-      img2: "https://m.media-amazon.com/images/I/71ovsF1JieL._AC_SX625_.jpg",
-      title: "Adidas Superstar",
-      isNew: false,
-      oldPrice: "$99.99",
-      price: "$79.99",
-    },
-    {
-      id: 3,
-      img: "https://m.media-amazon.com/images/I/71sek3cbamL._AC_SX625_.jpg",
-      img2: "https://m.media-amazon.com/images/I/71ovsF1JieL._AC_SX625_.jpg",
-      title: "Converse Chuck Taylor All Star",
-      isNew: true,
-      oldPrice: "$59.99",
-      price: "$49.99",
-    },
-    {
-      id: 4,
-      img: "https://m.media-amazon.com/images/I/71sek3cbamL._AC_SX625_.jpg",
-      img2: "https://m.media-amazon.com/images/I/71ovsF1JieL._AC_SX625_.jpg",
-      title: "Puma Suede Classic",
-      isNew: false,
-      oldPrice: "$79.99",
-      price: "$69.99",
-    },
-  ];
-
+const List = ({ catId, maxPrice, sort, subCats }) => {
+  const { data, loading, error } = useFetch(
+    `/products?populate=*&[filters][categories][id]=${catId}${subCats.map(
+      (item) => `&[filters][sub_categories][id][$eq]=${item}`
+    )}&[filters][price][$lte]=${maxPrice}&sort=price:${sort}`
+  );
   return (
     <div className="flex flex-wrap justify-between">
-      {data.map((item) => (
-        <Card item={item} key={item.id} />
-      ))}
+      {loading
+        ? "loading"
+        : data?.map((item) => <Card item={item} key={item.id} />)}
     </div>
   );
 };

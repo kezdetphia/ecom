@@ -1,34 +1,12 @@
-import React, { useEffect, useState } from "react";
 import Card from "./Card";
-import axios from "axios";
+import useFetch from "../hooks/useFetch";
 
 const FeaturedProducts = ({ type }) => {
-  const [data, setData] = useState([]);
-  console.log(type);
+  const { data, loading, error } = useFetch(
+    `/products?populate=*&[filters][type][$eq]=${type}`
+  );
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await axios.get(
-          process.env.REACT_APP_API_URL +
-            `/products?populate=*&[filters][type][$eq]=${type}`,
-          {
-            headers: {
-              Authorization: "Bearer " + process.env.REACT_APP_API_TOKEN,
-            },
-          }
-        );
-        setData(res.data.data);
-        console.log(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
-  }, []);
-
-  // console.log(data[0]?.attributes.img.data.attributes.url);
-
+  console.log(data);
   return (
     <div className="mx-20 my-20">
       <div className="flex justify-between items-center mb-10">
@@ -42,9 +20,11 @@ const FeaturedProducts = ({ type }) => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-5">
-        {data.map((item) => (
-          <Card item={item} key={item.id} />
-        ))}
+        {error
+          ? "Something went wrong!"
+          : loading
+          ? "Loading..."
+          : data?.map((item) => <Card item={item} key={item.id} />)}
       </div>
     </div>
   );

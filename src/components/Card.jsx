@@ -32,7 +32,6 @@ const Card = ({ item }) => {
           <h3 className="text-lg font-semibold relative">
             {/* Original price */}
             {item?.attributes?.oldPrice || item?.attributes?.price + 20}
-
             {/* Horizontal line */}
             <span className=" absolute inset-x-0 top-1/2 bg-neutral-700 h-0.5 transform -translate-y-1/2 z-0"></span>
           </h3>

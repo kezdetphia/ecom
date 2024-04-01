@@ -1,5 +1,7 @@
 import Slider from "../components/Slider";
 import FeaturedProducts from "../components/FeaturedProducts";
+import List from "../components/List";
+
 const Home = () => {
   return (
     <div className="  ">
